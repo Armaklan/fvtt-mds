@@ -1,14 +1,26 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-      <div class="fatigue-resource">
-        <label>Fatigue</label>
-        <div class="fatigue-values">
-          <input type="number" name="system.fatigue.value" value="{{actor.system.fatigue.value}}" data-dtype="Number"/>
-          <span class="fatigue-separator">/</span>
-          <span class="fatigue-max">{{actor.system.fatigue.max}}</span>
+      <div class="resources">
+        <div class="fatigue-resource">
+          <label>Fatigue</label>
+          <div class="fatigue-values">
+            <a class="resource-control decrease-fatigue"><i class="fas fa-minus"></i></a>
+            <input type="number" name="system.fatigue.value" value="{{actor.system.fatigue.value}}" data-dtype="Number"/>
+            <span class="fatigue-separator">/</span>
+            <span class="fatigue-max">{{actor.system.fatigue.max}}</span>
+            <a class="resource-control increase-fatigue"><i class="fas fa-plus"></i></a>
+          </div>
+        </div>
+        <div class="panache-resource">
+          <label>Panache</label>
+          <div class="panache-values">
+            <a class="resource-control decrease-panache"><i class="fas fa-minus"></i></a>
+            <input type="number" name="system.panache.value" value="{{actor.system.panache.value}}" data-dtype="Number"/>
+            <a class="resource-control increase-panache"><i class="fas fa-plus"></i></a>
+          </div>
         </div>
       </div>
     </div>

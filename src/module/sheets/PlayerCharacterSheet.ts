@@ -7,8 +7,8 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fvtt-mds", "sheet", "actor"],
       template: "systems/fvtt-mds/templates/sheets/actor-sheet.hbs",
-      width: 800,
-      height: 700,
+      width: 1000,
+      height: 800,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "profiles" }]
     });
   }
@@ -43,6 +43,38 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
 
     // Delete Item
     html.find('.item-delete').click(this._onItemDelete.bind(this));
+
+    // Resource Controls
+    html.find('.increase-fatigue').click(async (event) => {
+      event.preventDefault();
+      const currentValue = this.actor.system.fatigue.value;
+      const maxValue = this.actor.system.fatigue.max;
+      if (currentValue < maxValue) {
+        await this.actor.update({"system.fatigue.value": currentValue + 1});
+      }
+    });
+
+    html.find('.decrease-fatigue').click(async (event) => {
+      event.preventDefault();
+      const currentValue = this.actor.system.fatigue.value;
+      if (currentValue > 0) {
+        await this.actor.update({"system.fatigue.value": currentValue - 1});
+      }
+    });
+
+    html.find('.increase-panache').click(async (event) => {
+      event.preventDefault();
+      const currentValue = this.actor.system.panache.value;
+      await this.actor.update({"system.panache.value": currentValue + 1});
+    });
+
+    html.find('.decrease-panache').click(async (event) => {
+      event.preventDefault();
+      const currentValue = this.actor.system.panache.value;
+      if (currentValue > 0) {
+        await this.actor.update({"system.panache.value": currentValue - 1});
+      }
+    });
 
     // Profile Roll
     html.find('.profile-item').on('click', (event) => {

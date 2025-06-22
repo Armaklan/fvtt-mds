@@ -63,12 +63,21 @@ body {
   border-radius: 8px;
   margin-right: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  height: 120px;
-  width: 120px;
+  height: 160px;
+  width: 160px;
 }
 
 .header-fields {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-fields .resources {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
 }
 
 .charname input {
@@ -78,10 +87,11 @@ body {
   font-size: 1.4em;
   padding: 5px 10px;
   border-radius: 5px;
+  text-align: center;
 }
 
-/* Fatigue Resource Styling */
-.fatigue-resource {
+/* Fatigue and Panache Resource Styling */
+.fatigue-resource, .panache-resource {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,25 +102,43 @@ body {
   border-radius: 5px;
 }
 
-.fatigue-resource label {
+.fatigue-resource label, .panache-resource label {
   font-weight: bold;
   font-size: 1.1em;
   margin-bottom: 5px;
 }
 
-.fatigue-values {
+.fatigue-values, .panache-values {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.fatigue-values input {
+.fatigue-values input, .panache-values input {
   width: 50px;
   height: 35px;
   text-align: center;
   font-size: 1.2em;
   border-radius: 4px;
-  margin-right: 5px;
+  margin: 0 5px;
+}
+
+.resource-control {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #7a7971;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.resource-control:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
 .fatigue-separator {
@@ -126,7 +154,8 @@ body {
 
 /* Tab Styling */
 .sheet-tabs {
-  display: flex;
+  /*display: flex;*/
+  display: none;
   margin-bottom: 15px;
   border-bottom: 2px solid #7a7971;
 }

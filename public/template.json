@@ -23,6 +23,9 @@
       "fatigue": {
         "value": 0,
         "max": 0
+      },
+      "panache": {
+        "value": 0
       }
     }
   },
