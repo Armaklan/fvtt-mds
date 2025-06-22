@@ -38,9 +38,6 @@ jobs:
       - name: Copy files from public to dist
         run: cp -r public/* dist/
 
-      - name: Copy files from static to dist
-        run: cp -r static/* dist/
-
       - name: Create ZIP archive
         run: |
           cd dist
