@@ -21,6 +21,16 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     // Add a flag to check if actor has Aels
     data.hasAels = this.actor.items.some(i => i.type === "aels");
 
+    // Calculate maximum fatigue
+    const swordsmanValue = this.actor.system.profiles.swordsman.value || 1;
+    const adventurerValue = this.actor.system.profiles.adventurer.value || 1;
+    const maxFatigue = 7 + swordsmanValue + adventurerValue;
+
+    // Update the max fatigue value if it has changed
+    if (this.actor.system.fatigue.max !== maxFatigue) {
+      this.actor.update({"system.fatigue.max": maxFatigue});
+    }
+
     return data;
   }
 

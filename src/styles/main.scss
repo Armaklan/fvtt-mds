@@ -80,6 +80,50 @@ body {
   border-radius: 5px;
 }
 
+/* Fatigue Resource Styling */
+.fatigue-resource {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #7a7971;
+  border-radius: 5px;
+}
+
+.fatigue-resource label {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+.fatigue-values {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fatigue-values input {
+  width: 50px;
+  height: 35px;
+  text-align: center;
+  font-size: 1.2em;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.fatigue-separator {
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.fatigue-max {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 /* Tab Styling */
 .sheet-tabs {
   display: flex;

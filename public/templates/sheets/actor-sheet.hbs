@@ -3,6 +3,14 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+      <div class="fatigue-resource">
+        <label>Fatigue</label>
+        <div class="fatigue-values">
+          <input type="number" name="system.fatigue.value" value="{{actor.system.fatigue.value}}" data-dtype="Number"/>
+          <span class="fatigue-separator">/</span>
+          <span class="fatigue-max">{{actor.system.fatigue.max}}</span>
+        </div>
+      </div>
     </div>
   </header>
 
