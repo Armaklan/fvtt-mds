@@ -1,0 +1,18 @@
+{
+  "name": "fvtt-mds",
+  "version": "0.1.0",
+  "description": "Mousquetaire de Sang",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy:dev": "./deploy.sh"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "sass": "^1.75.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.0",
+    "vite-tsconfig-paths": "^4.2.0",
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main"
+  }
+}

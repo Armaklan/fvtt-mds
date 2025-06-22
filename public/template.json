@@ -1,0 +1,32 @@
+{
+  "Actor": {
+    "types": ["playerCharacter"],
+    "playerCharacter": {
+      "type": "playerCharacter",
+      "profiles": {
+        "swordsman": {
+          "value": 1
+        },
+        "courtier": {
+          "value": 1
+        },
+        "scholar": {
+          "value": 1
+        },
+        "rogue": {
+          "value": 1
+        },
+        "adventurer": {
+          "value": 1
+        }
+      }
+    }
+  },
+  "Item": {
+    "types": ["technique"],
+    "technique": {
+      "name": "",
+      "value": 0
+    }
+  }
+}

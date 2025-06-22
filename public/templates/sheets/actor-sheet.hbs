@@ -1,0 +1,67 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="profiles">Profiles</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Profiles Tab --}}
+    <div class="tab" data-group="primary" data-tab="profiles">
+      <div class="profiles-grid">
+        <div class="profile-item">
+          <label>Bretteur</label>
+          <input type="number" name="system.profiles.swordsman.value" value="{{actor.system.profiles.swordsman.value}}" min="1" max="3" data-dtype="Number"/>
+        </div>
+        <div class="profile-item">
+          <label>Courtisan</label>
+          <input type="number" name="system.profiles.courtier.value" value="{{actor.system.profiles.courtier.value}}" min="1" max="3" data-dtype="Number"/>
+        </div>
+        <div class="profile-item">
+          <label>Lettrés</label>
+          <input type="number" name="system.profiles.scholar.value" value="{{actor.system.profiles.scholar.value}}" min="1" max="3" data-dtype="Number"/>
+        </div>
+        <div class="profile-item">
+          <label>Forban</label>
+          <input type="number" name="system.profiles.rogue.value" value="{{actor.system.profiles.rogue.value}}" min="1" max="3" data-dtype="Number"/>
+        </div>
+        <div class="profile-item">
+          <label>Aventurier</label>
+          <input type="number" name="system.profiles.adventurer.value" value="{{actor.system.profiles.adventurer.value}}" min="1" max="3" data-dtype="Number"/>
+        </div>
+      </div>
+
+      {{!-- Techniques Section --}}
+      <header class="techniques-header">
+        <h3 class="techniques-title">Techniques</h3>
+        <div class="item-controls">
+          <a class="item-control item-create" title="Create Technique" data-type="technique"><i class="fas fa-plus"></i> Add Technique</a>
+        </div>
+      </header>
+      <ol class="techniques-list">
+        {{#each actor.items as |item|}}
+            {{#if (eq item.type "technique")}}
+                <li class="technique-item" data-item-id="{{item._id}}">
+                  <div class="technique-name">
+                    <input type="text" name="technique-name" value="{{item.name}}"/>
+                  </div>
+                  <div class="technique-value">
+                    <input type="number" name="technique-value" value="{{item.system.value}}" data-dtype="Number"/>
+                  </div>
+                  <div class="item-controls">
+                    <a class="item-control item-delete" title="Delete Technique"><i class="fas fa-trash"></i></a>
+                  </div>
+                </li>
+            {{/if}}
+        {{/each}}
+      </ol>
+    </div>
+  </section>
+</form>

@@ -1,0 +1,198 @@
+body {
+  font-family: "Signika", sans-serif;
+  color: #333;
+}
+
+/* Mousquetaire de Sang CSS */
+
+/* Profile Grid Styling */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid #7a7971;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.profile-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.profile-item label {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.profile-item input {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.3em;
+  border-radius: 4px;
+}
+
+/* General Sheet Styling */
+.sheet-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 2px solid #7a7971;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-img {
+  border: 3px solid #7a7971;
+  border-radius: 8px;
+  margin-right: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  height: 120px;
+  width: 120px;
+}
+
+.header-fields {
+  flex: 1;
+}
+
+.charname input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Tab Styling */
+.sheet-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #7a7971;
+}
+
+.sheet-tabs .item {
+  padding: 8px 15px;
+  margin-right: 8px;
+  border: 1px solid #7a7971;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  background: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sheet-tabs .item:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sheet-tabs .item.active {
+  background: #fff;
+  border-bottom: 2px solid #fff;
+  margin-bottom: -2px;
+  font-weight: bold;
+}
+
+/* Description Tab */
+.tab[data-tab="description"] textarea {
+  width: 100%;
+  height: 300px;
+  resize: vertical;
+}
+
+/* Techniques Tab */
+.techniques-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid #7a7971;
+}
+
+.techniques-title {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.item-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.item-control {
+  padding: 3px 5px;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+.item-control:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.techniques-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.technique-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.technique-item:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.technique-name {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.technique-name input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+}
+
+.technique-value {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.technique-value input {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+}

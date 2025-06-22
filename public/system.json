@@ -1,0 +1,21 @@
+{
+  "id": "fvtt-mds",
+  "name": "fvtt-mds",
+  "title": "Mousquetaire de Sang",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "ZUBER Lionel",
+      "email": "lionel.zuber@armaklan.org"
+    }
+  ],
+  "compatibility": {
+    "minimum": 13,
+    "verified": "13.0"
+  },
+  "esmodules": ["./bundle.js"],
+  "styles": ["./style.css"],
+  "languages": [],
+  "packs": [],
+  "manifest": "./system.json"
+}
