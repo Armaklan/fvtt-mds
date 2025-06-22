@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # This allows the workflow to upload release assets
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -43,6 +45,7 @@ jobs:
           cd dist
           zip -r ../fvtt-mds.zip .
           cd ..
+          ls
 
       - name: Upload ZIP to release
         uses: actions/upload-release-asset@v1
