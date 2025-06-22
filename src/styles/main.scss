@@ -118,8 +118,23 @@ body {
   resize: vertical;
 }
 
-/* Techniques Tab */
-.techniques-header {
+/* Content Layout */
+.content-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.content-column {
+  flex: 1;
+  border: 1px solid #7a7971;
+  border-radius: 5px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Techniques and Aels Sections */
+.techniques-header, .aels-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,10 +144,63 @@ body {
   border-bottom: 1px solid #7a7971;
 }
 
-.techniques-title {
+.techniques-title, .aels-title {
   margin: 0;
   font-size: 1.3em;
   font-weight: bold;
+}
+
+/* Aels Profile-like Styling */
+.aels-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.profile-like {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.profile-like .aels-type {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.profile-like .aels-type input {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.profile-like .profile-like-value {
+  width: 100%;
+}
+
+.profile-like .profile-like-value input {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.3em;
+  border-radius: 4px;
+  margin: 0 auto;
+  display: block;
+}
+
+.aels-controls {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.profile-like {
+  position: relative;
 }
 
 .item-controls {
@@ -154,42 +222,40 @@ body {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.techniques-list {
+.techniques-list, .aels-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.technique-item {
+.technique-item, .aels-item {
   display: flex;
   align-items: center;
   padding: 8px 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s ease;
 }
 
-.technique-item:hover {
+.technique-item:hover, .aels-item:hover {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
-.technique-name {
+.technique-name, .aels-type {
   flex: 1;
   margin-right: 10px;
 }
 
-.technique-name input {
+.technique-name input, .aels-type input {
   width: 100%;
   padding: 5px;
   border: 1px solid #7a7971;
   border-radius: 3px;
 }
 
-.technique-value {
+.technique-value, .aels-value {
   width: 80px;
   margin-right: 10px;
 }
 
-.technique-value input {
+.technique-value input, .aels-value input {
   width: 100%;
   padding: 5px;
   text-align: center;

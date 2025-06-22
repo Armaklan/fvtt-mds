@@ -23,8 +23,12 @@
     }
   },
   "Item": {
-    "types": ["technique"],
+    "types": ["technique", "aels"],
     "technique": {
+      "name": "",
+      "value": 0
+    },
+    "aels": {
       "name": "",
       "value": 0
     }

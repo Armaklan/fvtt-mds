@@ -16,7 +16,11 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    console.log({actorData: data})
+    console.log({actorData: data});
+
+    // Add a flag to check if actor has Aels
+    data.hasAels = this.actor.items.some(i => i.type === "aels");
+
     return data;
   }
 
@@ -24,13 +28,13 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
   activateListeners(html: JQuery) {
     super.activateListeners(html);
 
-    // Add Technique Item
+    // Add Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // Delete Technique Item
+    // Delete Item
     html.find('.item-delete').click(this._onItemDelete.bind(this));
 
-    // Modification des items
+    // Modification des techniques
     html.find(".technique-item input").change(async (event) => {
       const li = $(event.currentTarget).closest(".technique-item");
       const itemId = li.data("item-id");
@@ -40,6 +44,24 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
       // Récupération des deux champs depuis le <li>
       const name = li.find('input[name="technique-name"]').val();
       const value = Number(li.find('input[name="technique-value"]').val());
+
+      // Mise à jour de l'item
+      await item.update({
+        name: name,
+        "system.value": value
+      });
+    });
+
+    // Modification des aels
+    html.find(".aels-item input").change(async (event) => {
+      const aelsItem = $(event.currentTarget).closest(".aels-item");
+      const itemId = aelsItem.data("item-id");
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+
+      // Récupération des deux champs depuis le div
+      const name = aelsItem.find('input[name="aels-type"]').val();
+      const value = Number(aelsItem.find('input[name="aels-value"]').val());
 
       // Mise à jour de l'item
       await item.update({
@@ -59,6 +81,16 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     const header = event.currentTarget;
     const type = header.dataset.type;
     const typeName = type.charAt(0).toUpperCase() + type.slice(1);
+
+    // Check if trying to create an Aels and one already exists
+    if (type === "aels") {
+      const existingAels = this.actor.items.find(i => i.type === "aels");
+      if (existingAels) {
+        // If an Aels already exists, delete it before creating a new one
+        await this.actor.deleteEmbeddedDocuments("Item", [existingAels.id]);
+      }
+    }
+
     const itemData = {
       name: `New ${typeName}`,
       type: type,
@@ -74,8 +106,8 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
    */
   private async _onItemDelete(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const li = $(event.currentTarget).parents(".technique-item");
-    const itemId = li.data("item-id");
+    const element = $(event.currentTarget).closest(".technique-item, .aels-item");
+    const itemId = element.data("item-id");
     await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
 }

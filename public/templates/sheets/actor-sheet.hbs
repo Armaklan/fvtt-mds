@@ -38,30 +38,60 @@
         </div>
       </div>
 
-      {{!-- Techniques Section --}}
-      <header class="techniques-header">
-        <h3 class="techniques-title">Techniques</h3>
-        <div class="item-controls">
-          <a class="item-control item-create" title="Create Technique" data-type="technique"><i class="fas fa-plus"></i> Add Technique</a>
+      <div class="content-row">
+        <div class="content-column">
+          {{!-- Techniques Section --}}
+          <header class="techniques-header">
+            <h3 class="techniques-title">Techniques</h3>
+            <div class="item-controls">
+              <a class="item-control item-create" title="Create Technique" data-type="technique"><i class="fas fa-plus"></i> Add Technique</a>
+            </div>
+          </header>
+          <ol class="techniques-list">
+            {{#each actor.items as |item|}}
+                {{#if (eq item.type "technique")}}
+                    <li class="technique-item" data-item-id="{{item._id}}">
+                      <div class="technique-name">
+                        <input type="text" name="technique-name" value="{{item.name}}"/>
+                      </div>
+                      <div class="technique-value">
+                        <input type="number" name="technique-value" value="{{item.system.value}}" data-dtype="Number"/>
+                      </div>
+                      <div class="item-controls">
+                        <a class="item-control item-delete" title="Delete Technique"><i class="fas fa-trash"></i></a>
+                      </div>
+                    </li>
+                {{/if}}
+            {{/each}}
+          </ol>
         </div>
-      </header>
-      <ol class="techniques-list">
-        {{#each actor.items as |item|}}
-            {{#if (eq item.type "technique")}}
-                <li class="technique-item" data-item-id="{{item._id}}">
-                  <div class="technique-name">
-                    <input type="text" name="technique-name" value="{{item.name}}"/>
-                  </div>
-                  <div class="technique-value">
-                    <input type="number" name="technique-value" value="{{item.system.value}}" data-dtype="Number"/>
-                  </div>
-                  <div class="item-controls">
-                    <a class="item-control item-delete" title="Delete Technique"><i class="fas fa-trash"></i></a>
-                  </div>
-                </li>
-            {{/if}}
-        {{/each}}
-      </ol>
+
+        <div class="content-column">
+          {{!-- Aels Section --}}
+          <header class="aels-header">
+            <h3 class="aels-title">Aels</h3>
+            {{#unless hasAels}}
+            <div class="item-controls">
+              <a class="item-control item-create" title="Create Aels" data-type="aels"><i class="fas fa-plus"></i> Add Aels</a>
+            </div>
+            {{/unless}}
+          </header>
+          <div class="aels-container">
+            {{#each actor.items as |item|}}
+                {{#if (eq item.type "aels")}}
+                    <div class="aels-item profile-like" data-item-id="{{item._id}}">
+                      <div class="aels-type">
+                        <input type="text" name="aels-type" value="{{item.name}}" placeholder="Type de créature"/>
+                      </div>
+                      <div class="aels-value profile-like-value">
+                        <input type="number" name="aels-value" value="{{item.system.value}}" data-dtype="Number" placeholder="Puissance"/>
+                      </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </form>
