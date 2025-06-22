@@ -24,6 +24,514 @@
   font-family: "Signika", sans-serif;
   color: var(--color-text);
   background-color: var(--color-background);
+
+
+  /* Profile Grid Styling */
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+    padding: 15px;
+    background-color: rgba(255, 253, 240, 0.7);
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.5) 2px, transparent 2px);
+    background-size: 20px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 3px 6px var(--color-shadow);
+  }
+
+  .profile-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    background: linear-gradient(to bottom, #ffffff, var(--color-background));
+    box-shadow: 0 3px 7px var(--color-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--color-primary);
+    opacity: 0.8;
+  }
+
+  .profile-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--color-shadow);
+    border-color: var(--color-accent);
+  }
+
+  .profile-item:hover::before {
+    background: var(--color-accent);
+  }
+
+  .profile-item label {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--color-secondary);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+  }
+
+  .profile-item input {
+    width: 65px;
+    height: 45px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    background-color: white;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .profile-item input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+    outline: none;
+  }
+
+  /* General Sheet Styling */
+  .sheet-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(to bottom, var(--color-secondary), rgba(44, 62, 80, 0.9));
+    border-bottom: 3px solid var(--color-accent);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 8px var(--color-shadow);
+  }
+
+  .profile-img {
+    border: 3px solid var(--color-accent);
+    border-radius: 10px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px var(--color-shadow);
+    height: 160px;
+    width: 160px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .profile-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px var(--color-shadow);
+  }
+
+  .profile-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 7px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+
+  .header-fields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-fields .resources {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .charname input {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: var(--color-text-light);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .charname input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 8px var(--color-accent);
+    outline: none;
+  }
+
+  /* Fatigue and Panache Resource Styling */
+  .fatigue-resource, .panache-resource {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: 140px;
+  }
+
+  .fatigue-resource:hover, .panache-resource:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .fatigue-resource label, .panache-resource label {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+  }
+
+  .fatigue-values, .panache-values {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fatigue-values input, .panache-values input {
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 6px;
+    margin: 0 5px;
+    border: 1px solid var(--color-accent);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-text-light);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .fatigue-values input:focus, .panache-values input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px var(--color-accent);
+    outline: none;
+  }
+
+  .resource-control {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    color: var(--color-text-light);
+    font-size: 0.9em;
+  }
+
+  .resource-control:hover {
+    background: var(--color-accent);
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  }
+
+  .fatigue-separator {
+    margin: 0 5px;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: var(--color-text-light);
+  }
+
+  .fatigue-max {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: var(--color-text-light);
+  }
+
+  /* Fatigue-specific styling */
+  .fatigue-resource {
+    background: linear-gradient(to bottom, rgba(139, 0, 0, 0.7), rgba(139, 0, 0, 0.5));
+  }
+
+  /* Panache-specific styling */
+  .panache-resource {
+    background: linear-gradient(to bottom, rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.5));
+  }
+
+  /* Tab Styling */
+  .sheet-tabs {
+    /*display: flex;*/
+    display: none;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #7a7971;
+  }
+
+  .sheet-tabs .item {
+    padding: 8px 15px;
+    margin-right: 8px;
+    border: 1px solid #7a7971;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .sheet-tabs .item:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .sheet-tabs .item.active {
+    background: #fff;
+    border-bottom: 2px solid #fff;
+    margin-bottom: -2px;
+    font-weight: bold;
+  }
+
+  /* Description Tab */
+  .tab[data-tab="description"] textarea {
+    width: 100%;
+    height: 300px;
+    resize: vertical;
+  }
+
+  /* Content Layout */
+  .content-row {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+  }
+
+  .content-column {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 15px;
+    background: var(--color-background);
+    box-shadow: 0 3px 7px var(--color-shadow);
+    transition: all 0.3s ease;
+
+    &.col-double {
+      flex: 2 2 100%;
+    }
+
+    &.col-flex {
+      flex: 1 1 auto;
+    }
+  }
+
+  .content-column:hover {
+    box-shadow: 0 5px 15px var(--color-shadow);
+  }
+
+  /* Techniques and Aels Sections */
+  .techniques-header, .aels-header, .blessures-header, .equipements-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -15px -15px 15px -15px;
+    padding: 12px 15px;
+    background: linear-gradient(to right, var(--color-primary), rgba(139, 0, 0, 0.8));
+    border-bottom: 2px solid var(--color-accent);
+    border-radius: 7px 7px 0 0;
+  }
+
+  .techniques-title, .aels-title, .blessures-title, .equipements-title {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Aels Profile-like Styling */
+  .aels-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .profile-like {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .profile-like .aels-type {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .profile-like .aels-type input {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .profile-like .profile-like-value {
+    width: 100%;
+  }
+
+  .profile-like .profile-like-value input {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.3em;
+    border-radius: 4px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .aels-controls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  .profile-like {
+    position: relative;
+  }
+
+  .item-controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .item-control {
+    padding: 5px 10px;
+    border: 1px solid var(--color-accent);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-light);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-control i {
+    margin-right: 5px;
+  }
+
+  .item-control:hover {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .item-control.item-delete {
+    border-color: var(--color-primary);
+  }
+
+  .item-control.item-delete:hover {
+    background: var(--color-primary);
+    color: var(--color-text-light);
+  }
+
+  .techniques-list, .aels-list, .blessures-list, .equipements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .technique-item, .aels-item, .blessure-item, .equipement-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .technique-item:hover, .aels-item:hover, .blessure-item:hover, .equipement-item:hover {
+    background-color: rgba(212, 175, 55, 0.05);
+    border-color: var(--color-accent);
+    transform: translateX(3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .technique-name, .aels-type, .blessure-name, .equipement-name {
+    flex: 1;
+    margin-right: 15px;
+  }
+
+  .technique-name input, .aels-type input, .blessure-name input, .equipement-name input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .technique-name input:focus, .aels-type input:focus, .blessure-name input:focus, .equipement-name input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    outline: none;
+  }
+
+  .technique-value, .aels-value {
+    width: 80px;
+    margin-right: 15px;
+  }
+
+  .technique-value input, .aels-value input {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .technique-value input:focus, .aels-value input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    outline: none;
+  }
 }
 
 .fvtt-mds.sheet.actor form {
@@ -31,512 +539,6 @@
   overflow: hidden;
 }
 
-/* Profile Grid Styling */
-.profiles-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  margin: 25px 0;
-  padding: 15px;
-  background-color: rgba(255, 253, 240, 0.7);
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 2px, transparent 2px);
-  background-size: 20px 20px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  box-shadow: 0 3px 6px var(--color-shadow);
-}
-
-.profile-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  background: linear-gradient(to bottom, #ffffff, var(--color-background));
-  box-shadow: 0 3px 7px var(--color-shadow);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.profile-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--color-primary);
-  opacity: 0.8;
-}
-
-.profile-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px var(--color-shadow);
-  border-color: var(--color-accent);
-}
-
-.profile-item:hover::before {
-  background: var(--color-accent);
-}
-
-.profile-item label {
-  font-weight: bold;
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  text-align: center;
-  color: var(--color-secondary);
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.5px;
-}
-
-.profile-item input {
-  width: 65px;
-  height: 45px;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
-  background-color: white;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.profile-item input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-  outline: none;
-}
-
-/* General Sheet Styling */
-.sheet-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 25px;
-  padding: 15px;
-  background: linear-gradient(to bottom, var(--color-secondary), rgba(44, 62, 80, 0.9));
-  border-bottom: 3px solid var(--color-accent);
-  border-radius: 8px 8px 0 0;
-  box-shadow: 0 4px 8px var(--color-shadow);
-}
-
-.profile-img {
-  border: 3px solid var(--color-accent);
-  border-radius: 10px;
-  margin-right: 20px;
-  box-shadow: 0 4px 8px var(--color-shadow);
-  height: 160px;
-  width: 160px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.profile-img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px var(--color-shadow);
-}
-
-.profile-img::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 7px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-}
-
-.header-fields {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.header-fields .resources {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.charname input {
-  width: 100%;
-  height: 45px;
-  margin-bottom: 15px;
-  font-size: 1.6em;
-  font-weight: bold;
-  padding: 5px 15px;
-  border-radius: 8px;
-  text-align: center;
-  color: var(--color-text-light);
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--color-accent);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.charname input:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 8px var(--color-accent);
-  outline: none;
-}
-
-/* Fatigue and Panache Resource Styling */
-.fatigue-resource, .panache-resource {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid var(--color-accent);
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  min-width: 140px;
-}
-
-.fatigue-resource:hover, .panache-resource:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-}
-
-.fatigue-resource label, .panache-resource label {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 8px;
-  color: var(--color-text-light);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.5px;
-}
-
-.fatigue-values, .panache-values {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fatigue-values input, .panache-values input {
-  width: 50px;
-  height: 40px;
-  text-align: center;
-  font-size: 1.3em;
-  font-weight: bold;
-  border-radius: 6px;
-  margin: 0 5px;
-  border: 1px solid var(--color-accent);
-  background-color: rgba(255, 255, 255, 0.2);
-  color: var(--color-text-light);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-}
-
-.fatigue-values input:focus, .panache-values input:focus {
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 5px var(--color-accent);
-  outline: none;
-}
-
-.resource-control {
-  cursor: pointer;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--color-accent);
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  color: var(--color-text-light);
-  font-size: 0.9em;
-}
-
-.resource-control:hover {
-  background: var(--color-accent);
-  transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-}
-
-.fatigue-separator {
-  margin: 0 5px;
-  font-weight: bold;
-  font-size: 1.3em;
-  color: var(--color-text-light);
-}
-
-.fatigue-max {
-  font-weight: bold;
-  font-size: 1.3em;
-  color: var(--color-text-light);
-}
-
-/* Fatigue-specific styling */
-.fatigue-resource {
-  background: linear-gradient(to bottom, rgba(139, 0, 0, 0.7), rgba(139, 0, 0, 0.5));
-}
-
-/* Panache-specific styling */
-.panache-resource {
-  background: linear-gradient(to bottom, rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.5));
-}
-
-/* Tab Styling */
-.sheet-tabs {
-  /*display: flex;*/
-  display: none;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #7a7971;
-}
-
-.sheet-tabs .item {
-  padding: 8px 15px;
-  margin-right: 8px;
-  border: 1px solid #7a7971;
-  border-bottom: none;
-  border-radius: 5px 5px 0 0;
-  background: rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.sheet-tabs .item:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.sheet-tabs .item.active {
-  background: #fff;
-  border-bottom: 2px solid #fff;
-  margin-bottom: -2px;
-  font-weight: bold;
-}
-
-/* Description Tab */
-.tab[data-tab="description"] textarea {
-  width: 100%;
-  height: 300px;
-  resize: vertical;
-}
-
-/* Content Layout */
-.content-row {
-  display: flex;
-  gap: 25px;
-  margin-top: 30px;
-}
-
-.content-column {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 15px;
-  background: var(--color-background);
-  box-shadow: 0 3px 7px var(--color-shadow);
-  transition: all 0.3s ease;
-
-  &.col-double {
-    flex: 2 2 100%;
-  }
-
-  &.col-flex {
-    flex: 1 1 auto;
-  }
-}
-
-.content-column:hover {
-  box-shadow: 0 5px 15px var(--color-shadow);
-}
-
-/* Techniques and Aels Sections */
-.techniques-header, .aels-header, .blessures-header, .equipements-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: -15px -15px 15px -15px;
-  padding: 12px 15px;
-  background: linear-gradient(to right, var(--color-primary), rgba(139, 0, 0, 0.8));
-  border-bottom: 2px solid var(--color-accent);
-  border-radius: 7px 7px 0 0;
-}
-
-.techniques-title, .aels-title, .blessures-title, .equipements-title {
-  margin: 0;
-  font-size: 1.4em;
-  font-weight: bold;
-  color: var(--color-text-light);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Aels Profile-like Styling */
-.aels-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-}
-
-.profile-like {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.profile-like .aels-type {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.profile-like .aels-type input {
-  width: 100%;
-  padding: 5px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.1em;
-}
-
-.profile-like .profile-like-value {
-  width: 100%;
-}
-
-.profile-like .profile-like-value input {
-  width: 60px;
-  height: 40px;
-  text-align: center;
-  font-size: 1.3em;
-  border-radius: 4px;
-  margin: 0 auto;
-  display: block;
-}
-
-.aels-controls {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
-.profile-like {
-  position: relative;
-}
-
-.item-controls {
-  display: flex;
-  gap: 8px;
-}
-
-.item-control {
-  padding: 5px 10px;
-  border: 1px solid var(--color-accent);
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text-light);
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.item-control i {
-  margin-right: 5px;
-}
-
-.item-control:hover {
-  background: var(--color-accent);
-  color: var(--color-secondary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.item-control.item-delete {
-  border-color: var(--color-primary);
-}
-
-.item-control.item-delete:hover {
-  background: var(--color-primary);
-  color: var(--color-text-light);
-}
-
-.techniques-list, .aels-list, .blessures-list, .equipements-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.technique-item, .aels-item, .blessure-item, .equipement-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  background: white;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.technique-item:hover, .aels-item:hover, .blessure-item:hover, .equipement-item:hover {
-  background-color: rgba(212, 175, 55, 0.05);
-  border-color: var(--color-accent);
-  transform: translateX(3px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-.technique-name, .aels-type, .blessure-name, .equipement-name {
-  flex: 1;
-  margin-right: 15px;
-}
-
-.technique-name input, .aels-type input, .blessure-name input, .equipement-name input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--color-border);
-  border-radius: 5px;
-  font-size: 1.1em;
-  transition: all 0.2s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.technique-name input:focus, .aels-type input:focus, .blessure-name input:focus, .equipement-name input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-  outline: none;
-}
-
-.technique-value, .aels-value {
-  width: 80px;
-  margin-right: 15px;
-}
-
-.technique-value input, .aels-value input {
-  width: 100%;
-  padding: 8px;
-  text-align: center;
-  border: 1px solid var(--color-border);
-  border-radius: 5px;
-  font-size: 1.1em;
-  font-weight: bold;
-  transition: all 0.2s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.technique-value input:focus, .aels-value input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-  outline: none;
-}
 
 /* Dice Roll Styling */
 .dice-roll {
