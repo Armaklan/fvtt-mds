@@ -17,6 +17,6 @@
   "styles": ["./style.css"],
   "languages": [],
   "packs": [],
-  "manifest": "https://raw.githubusercontent.com/Armaklan/fvvt-mds/main/public/system.json",
+  "manifest": "https://raw.githubusercontent.com/Armaklan/fvtt-mds/main/public/system.json",
   "download": "https://github.com/Armaklan/fvtt-mds/archive/0.0.1.zip"
 }
