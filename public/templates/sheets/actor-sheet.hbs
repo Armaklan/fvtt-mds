@@ -39,7 +39,7 @@
       </div>
 
       <div class="content-row">
-        <div class="content-column">
+        <div class="content-column col-double">
           {{!-- Techniques Section --}}
           <header class="techniques-header">
             <h3 class="techniques-title">Techniques</h3>
@@ -66,7 +66,7 @@
           </ol>
         </div>
 
-        <div class="content-column">
+        <div class="content-column col-flex">
           {{!-- Aels Section --}}
           <header class="aels-header">
             <h3 class="aels-title">Aels</h3>
@@ -90,6 +90,56 @@
                 {{/if}}
             {{/each}}
           </div>
+        </div>
+      </div>
+
+      <div class="content-row">
+        <div class="content-column col-flex">
+          {{!-- Blessures Section --}}
+          <header class="blessures-header">
+            <h3 class="blessures-title">Blessures</h3>
+            <div class="item-controls">
+              <a class="item-control item-create" title="Create Blessure" data-type="blessure"><i class="fas fa-plus"></i> Add Blessure</a>
+            </div>
+          </header>
+          <ol class="blessures-list">
+            {{#each actor.items as |item|}}
+                {{#if (eq item.type "blessure")}}
+                    <li class="blessure-item" data-item-id="{{item._id}}">
+                      <div class="blessure-name">
+                        <input type="text" name="blessure-name" value="{{item.name}}"/>
+                      </div>
+                      <div class="item-controls">
+                        <a class="item-control item-delete" title="Delete Blessure"><i class="fas fa-trash"></i></a>
+                      </div>
+                    </li>
+                {{/if}}
+            {{/each}}
+          </ol>
+        </div>
+
+        <div class="content-column col-flex">
+          {{!-- Equipements Section --}}
+          <header class="equipements-header">
+            <h3 class="equipements-title">Equipements</h3>
+            <div class="item-controls">
+              <a class="item-control item-create" title="Create Equipement" data-type="equipements"><i class="fas fa-plus"></i> Add Equipement</a>
+            </div>
+          </header>
+          <ol class="equipements-list">
+            {{#each actor.items as |item|}}
+                {{#if (eq item.type "equipements")}}
+                    <li class="equipement-item" data-item-id="{{item._id}}">
+                      <div class="equipement-name">
+                        <input type="text" name="equipement-name" value="{{item.name}}"/>
+                      </div>
+                      <div class="item-controls">
+                        <a class="item-control item-delete" title="Delete Equipement"><i class="fas fa-trash"></i></a>
+                      </div>
+                    </li>
+                {{/if}}
+            {{/each}}
+          </ol>
         </div>
       </div>
     </div>

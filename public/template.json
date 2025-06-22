@@ -23,7 +23,7 @@
     }
   },
   "Item": {
-    "types": ["technique", "aels"],
+    "types": ["technique", "aels", "blessure", "equipements"],
     "technique": {
       "name": "",
       "value": 0
@@ -31,6 +31,12 @@
     "aels": {
       "name": "",
       "value": 0
+    },
+    "blessure": {
+      "name": ""
+    },
+    "equipements": {
+      "name": ""
     }
   }
 }

@@ -81,6 +81,38 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
         "system.value": value
       });
     });
+
+    // Modification des blessures
+    html.find(".blessure-item input").change(async (event) => {
+      const li = $(event.currentTarget).closest(".blessure-item");
+      const itemId = li.data("item-id");
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+
+      // Récupération du nom depuis le <li>
+      const name = li.find('input[name="blessure-name"]').val();
+
+      // Mise à jour de l'item
+      await item.update({
+        name: name
+      });
+    });
+
+    // Modification des equipements
+    html.find(".equipement-item input").change(async (event) => {
+      const li = $(event.currentTarget).closest(".equipement-item");
+      const itemId = li.data("item-id");
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+
+      // Récupération du nom depuis le <li>
+      const name = li.find('input[name="equipement-name"]').val();
+
+      // Mise à jour de l'item
+      await item.update({
+        name: name
+      });
+    });
   }
 
   /**
@@ -103,11 +135,22 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
       }
     }
 
-    const itemData = {
-      name: `New ${typeName}`,
-      type: type,
-      system: { value: 0 }
-    };
+    let itemData;
+    if (type === "blessure" || type === "equipements") {
+      // For blessure and equipements, only include name (no value)
+      itemData = {
+        name: `New ${typeName}`,
+        type: type,
+        system: {}
+      };
+    } else {
+      // For other types (technique, aels), include value
+      itemData = {
+        name: `New ${typeName}`,
+        type: type,
+        system: { value: 0 }
+      };
+    }
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
@@ -118,7 +161,7 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
    */
   private async _onItemDelete(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".technique-item, .aels-item");
+    const element = $(event.currentTarget).closest(".technique-item, .aels-item, .blessure-item, .equipement-item");
     const itemId = element.data("item-id");
     await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
