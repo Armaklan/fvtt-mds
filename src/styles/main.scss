@@ -262,3 +262,162 @@ body {
   border: 1px solid #7a7971;
   border-radius: 3px;
 }
+
+/* Dice Roll Styling */
+.dice-roll {
+  padding: 10px;
+  border: 1px solid #7a7971;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+}
+
+.dice-roll h3 {
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #7a7971;
+  padding-bottom: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.dice-formula {
+  font-family: monospace;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.dice-tooltip {
+  margin: 5px 0;
+}
+
+.dice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.die {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #7a7971;
+  border-radius: 5px;
+  background: #f0f0f0;
+  font-weight: bold;
+}
+
+.complication-die {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #c00;
+  color: #c00;
+}
+
+.aels-die {
+  background: rgba(0, 0, 255, 0.2);
+  border-color: #008;
+  color: #008;
+}
+
+.advantage-die {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: #080;
+  color: #080;
+}
+
+.highest-die {
+  background: rgba(255, 215, 0, 0.3);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 5px #ffd700;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Handle cases where a die has multiple special states */
+.aels-die.advantage-die {
+  background: linear-gradient(135deg, rgba(0, 0, 255, 0.2) 0%, rgba(0, 255, 0, 0.2) 100%);
+  border: 1px dashed #008;
+  box-shadow: 0 0 0 1px #080;
+}
+
+.highest-die.complication-die {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 0, 0, 0.2) 100%);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 5px #c00;
+}
+
+.highest-die.aels-die {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(0, 0, 255, 0.2) 100%);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 5px #008;
+}
+
+.highest-die.advantage-die {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(0, 255, 0, 0.2) 100%);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 5px #080;
+}
+
+.highest-die.aels-die.advantage-die {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(0, 0, 255, 0.2) 50%, rgba(0, 255, 0, 0.2) 100%);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 5px #008, 0 0 5px #080;
+}
+
+.dice-total {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #333;
+}
+
+.complication {
+  color: #c00;
+  font-weight: bold;
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #c00;
+  border-radius: 3px;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.advantage {
+  color: #080;
+  font-weight: bold;
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #080;
+  border-radius: 3px;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.aels-bonus {
+  color: #008;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* Dialog Form Styling */
+.dialog .form-group {
+  margin-bottom: 10px;
+}
+
+.dialog .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.dialog .form-group input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+}
+
+.dialog .form-group input[type="checkbox"] {
+  margin-right: 5px;
+}
