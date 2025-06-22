@@ -18,5 +18,5 @@
   "languages": [],
   "packs": [],
   "manifest": "https://raw.githubusercontent.com/Armaklan/fvtt-mds/main/public/system.json",
-  "download": "https://github.com/Armaklan/fvtt-mds/archive/0.0.1.zip"
+  "download": "https://github.com/Armaklan/fvtt-mds/releases/download/0.0.3/fvtt-mds.zip"
 }
