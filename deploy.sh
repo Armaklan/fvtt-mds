@@ -11,7 +11,6 @@ npm run build
 
 # Copie les fichiers nécessaires
 cp -r public/* dist/
-cp -r static/* dist/
 
 echo "🛠️  Déploiement du système dans: $DEST_DIR"
 

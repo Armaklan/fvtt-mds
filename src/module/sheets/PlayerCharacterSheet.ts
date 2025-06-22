@@ -1,10 +1,10 @@
 /**
  * Extends the basic ActorSheet with specific features for Mousquetaire de Sang.
  */
-export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
+export class PlayerCharacterSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return mergeObject(super.defaultOptions, {
       classes: ["fvtt-mds", "sheet", "actor"],
       template: "systems/fvtt-mds/templates/sheets/actor-sheet.hbs",
       width: 1000,
