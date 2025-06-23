@@ -19,7 +19,8 @@ export class DiceRoller {
     const dialogContent = await renderTemplate("systems/fvtt-mds/templates/dice/dice-roll-dialog.hbs", {
       hasAels,
       aelsValue,
-      profileValue
+      profileValue,
+      combatValue: profileValue + 1
     });
 
     // Show dialog
@@ -171,7 +172,9 @@ export class DiceRoller {
       total,
       aelsBonus: aelsBonus > 0 ? aelsBonus : null,
       hasComplication,
-      hasAdvantage
+      hasAdvantage,
+      actorName: actor.name,
+      actorImg: actor.img
     });
 
     // Create the chat message
@@ -305,7 +308,9 @@ export class DiceRoller {
       total,
       aelsBonus: aelsBonus > 0 ? aelsBonus : null,
       hasComplication,
-      hasAdvantage
+      hasAdvantage,
+      actorName: actor.name,
+      actorImg: actor.img
     });
 
     // Create the chat message

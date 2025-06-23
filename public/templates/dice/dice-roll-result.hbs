@@ -1,4 +1,10 @@
 <div class="dice-roll">
+  {{#if actorName}}
+  <div class="dice-roll-character">
+    {{#if actorImg}}<img src="{{actorImg}}" alt="{{actorName}}" class="dice-roll-avatar" />{{/if}}
+    <span class="dice-roll-character-name">{{actorName}}</span>
+  </div>
+  {{/if}}
   <h3>{{profileLabel}} ({{profileValue}})</h3>
   <div class="dice-result">
     <div class="dice-formula">Highest of {{totalDice}}d10 + {{staticBonus}}</div>

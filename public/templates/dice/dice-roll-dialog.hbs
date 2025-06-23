@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <label>Dés totaux: <span id="totalDiceCount">{{profileValue}}</span></label>
+                <label>Dés totaux: <span id="totalDiceCount">{{combatValue}}</span></label>
             </div>
 
 
@@ -59,7 +59,7 @@
                 <div class="content-column col-flex">
                     <div class="form-group">
                         <label>Dés de défense:</label>
-                        <input type="number" name="pasDefenseDice" value="0" min="1" max="{{profileValue}}">
+                        <input type="number" name="pasDefenseDice" value="1" min="1" max="{{combatValue}}">
                     </div>
 
                     <div class="form-group">
@@ -101,7 +101,7 @@
             const totalDice = parseInt($('#totalDiceCount').text());
 
             // Ensure at least 1 die for defense
-            const newDefenseDice = Math.max(1, Math.min(defenseDice, totalDice - 1));
+            const newDefenseDice = Math.max(1, Math.min(defenseDice, totalDice));
 
             $(this).val(newDefenseDice);
             $('input[name="pasAttackDice"]').val(totalDice - newDefenseDice);
@@ -109,7 +109,7 @@
 
         function updateTotalDice() {
             const bonusDice = parseInt($('input[name="pasBonusDice"]').val()) || 0;
-            const totalDice = profileValue + bonusDice;
+            const totalDice = combatValue + bonusDice;
             $('#totalDiceCount').text(totalDice);
 
             // Default distribution: maximum for attack, minimum for defense
@@ -118,7 +118,7 @@
 
             // Update max values
             $('input[name="pasAttackDice"]').attr('max', totalDice - 1);
-            $('input[name="pasDefenseDice"]').attr('max', totalDice - 1);
+            $('input[name="pasDefenseDice"]').attr('max', totalDice);
         }
     });
 </script>
