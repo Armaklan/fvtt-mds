@@ -14,7 +14,7 @@
 }
 
 /* Main Form Styling */
-.fvtt-mds.sheet.actor {
+.fvtt-mds.sheet.actor, .fvtt-mds.dialog {
   background-image: 
     linear-gradient(rgba(249, 247, 240, 0.9), rgba(249, 247, 240, 0.9)),
     repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 0, 0, 0.03) 10px, rgba(139, 0, 0, 0.03) 11px);
