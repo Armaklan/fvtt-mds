@@ -26,7 +26,7 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Calculate maximum fatigue
     const swordsmanValue = this.actor.system.profiles.swordsman.value || 1;
     const adventurerValue = this.actor.system.profiles.adventurer.value || 1;
-    const maxFatigue = 7 + swordsmanValue + adventurerValue;
+    const maxFatigue = 5 + swordsmanValue + adventurerValue;
 
     // Update the max fatigue value if it has changed
     if (this.actor.system.fatigue.max !== maxFatigue) {
