@@ -536,9 +536,7 @@
 
 .fvtt-mds.sheet.actor form {
   border-radius: 8px;
-  overflow: hidden;
 }
-
 
 /* Dice Roll Styling */
 .dice-roll {
@@ -702,78 +700,122 @@
 }
 
 /* Dialog Form Styling */
-.dialog {
-  background-image: 
-    linear-gradient(rgba(249, 247, 240, 0.95), rgba(249, 247, 240, 0.95)),
-    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 0, 0, 0.03) 10px, rgba(139, 0, 0, 0.03) 11px);
+.fvtt-mds.dialog.app.window-app {
   border: 2px solid var(--color-accent);
   border-radius: 8px;
   box-shadow: 0 0 20px var(--color-shadow);
+
+
+  .window-content {
+    padding: 15px;
+  }
+
+  /* Dialog Tabs Styling */
+  .tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .tabs .item {
+    padding: 8px 15px;
+    margin-right: 8px;
+    border: 1px solid var(--color-border);
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .tabs .item:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .tabs .item.active {
+    background: #fff;
+    border-bottom: 2px solid #fff;
+    margin-bottom: -2px;
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+
+  .tab-content {
+    margin-bottom: 15px;
+  }
+
+  .tab-content .tab {
+    display: none;
+  }
+
+  .tab-content .tab.active {
+    display: block;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--color-secondary);
+    font-size: 1.1em;
+  }
+
+  .form-group input[type="number"] {
+    width: 70px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    font-size: 1.1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .form-group input[type="number"]:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    outline: none;
+  }
+
+  .form-group input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .dialog-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .dialog-button {
+    background: linear-gradient(to bottom, var(--color-secondary), rgba(44, 62, 80, 0.9));
+    color: var(--color-text-light);
+    border: 1px solid var(--color-accent);
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+
+  .dialog-button:hover {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.dialog .window-content {
-  padding: 15px;
-}
-
-.dialog .form-group {
-  margin-bottom: 15px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
-}
-
-.dialog .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: var(--color-secondary);
-  font-size: 1.1em;
-}
-
-.dialog .form-group input[type="number"] {
-  width: 70px;
-  padding: 8px;
-  text-align: center;
-  border: 1px solid var(--color-border);
-  border-radius: 5px;
-  font-size: 1.1em;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.dialog .form-group input[type="number"]:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-  outline: none;
-}
-
-.dialog .form-group input[type="checkbox"] {
-  margin-right: 8px;
-  width: 16px;
-  height: 16px;
-}
-
-.dialog .dialog-buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.dialog .dialog-button {
-  background: linear-gradient(to bottom, var(--color-secondary), rgba(44, 62, 80, 0.9));
-  color: var(--color-text-light);
-  border: 1px solid var(--color-accent);
-  border-radius: 5px;
-  padding: 8px 15px;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-
-.dialog .dialog-button:hover {
-  background: var(--color-accent);
-  color: var(--color-secondary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}

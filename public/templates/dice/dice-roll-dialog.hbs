@@ -1,18 +1,118 @@
 <form>
-  <div class="form-group">
-    <label>Dé bonus:</label>
-    <input type="number" name="bonusDice" value="0" min="0">
-  </div>
-  <div class="form-group">
-    <label>Bonus statique:</label>
-    <input type="number" name="staticBonus" value="0" min="0">
-  </div>
-  {{#if hasAels}}
-  <div class="form-group">
-    <label>
-      <input type="checkbox" name="useAels">
-      Utilisation de l'Aels (Puissance: {{aelsValue}})
-    </label>
-  </div>
-  {{/if}}
+  <nav class="tabs" data-group="primary-tabs">
+    <a class="item active" data-tab="standard">Standard</a>
+    <a class="item" data-tab="passe-arme">Passe d'arme</a>
+  </nav>
+
+  <section class="tab-content">
+    <div class="tab active" data-tab="standard" data-group="primary-tabs">
+      <div class="form-group">
+        <label>Dé bonus:</label>
+        <input type="number" name="bonusDice" value="0" min="0">
+      </div>
+      <div class="form-group">
+        <label>Bonus statique:</label>
+        <input type="number" name="staticBonus" value="0" min="0">
+      </div>
+      {{#if hasAels}}
+      <div class="form-group">
+        <label>
+          <input type="checkbox" name="useAels">
+          Utilisation de l'Aels (Puissance: {{aelsValue}})
+        </label>
+      </div>
+      {{/if}}
+    </div>
+
+    <div class="tab" data-tab="passe-arme" data-group="primary-tabs">
+      <div class="form-group">
+        <label>Dé bonus:</label>
+        <input type="number" name="pasBonusDice" value="0" min="0">
+      </div>
+
+      <div class="form-group">
+        <label>Dés totaux: <span id="totalDiceCount">{{profileValue}}</span></label>
+      </div>
+
+      <div class="form-group">
+        <label>Dés d'attaque:</label>
+        <input type="number" name="pasAttackDice" value="{{profileValue}}" min="0" max="{{profileValue}}">
+      </div>
+
+      <div class="form-group">
+        <label>Dés de défense:</label>
+        <input type="number" name="pasDefenseDice" value="0" min="1" max="{{profileValue}}">
+      </div>
+
+      <div class="form-group">
+        <label>Bonus statique d'attaque:</label>
+        <input type="number" name="pasAttackBonus" value="0" min="0">
+      </div>
+
+      <div class="form-group">
+        <label>Bonus statique de défense:</label>
+        <input type="number" name="pasDefenseBonus" value="0" min="0">
+      </div>
+
+      {{#if hasAels}}
+      <div class="form-group">
+        <label>
+          <input type="checkbox" name="pasUseAels">
+          Utilisation de l'Aels (Puissance: {{aelsValue}})
+        </label>
+      </div>
+      {{/if}}
+    </div>
+  </section>
 </form>
+
+<script>
+  // Update total dice count and enforce distribution constraints
+  $(document).ready(function() {
+    const profileValue = {{profileValue}};
+
+    // Update when bonus dice change
+    $('input[name="pasBonusDice"]').change(function() {
+      updateTotalDice();
+    });
+
+    // Update when attack dice change
+    $('input[name="pasAttackDice"]').change(function() {
+      const attackDice = parseInt($(this).val()) || 0;
+      const totalDice = parseInt($('#totalDiceCount').text());
+
+      // Ensure at least 1 die for defense
+      const maxAttackDice = totalDice - 1;
+      const newAttackDice = Math.min(attackDice, maxAttackDice);
+
+      $(this).val(newAttackDice);
+      $('input[name="pasDefenseDice"]').val(totalDice - newAttackDice);
+    });
+
+    // Update when defense dice change
+    $('input[name="pasDefenseDice"]').change(function() {
+      const defenseDice = parseInt($(this).val()) || 0;
+      const totalDice = parseInt($('#totalDiceCount').text());
+
+      // Ensure at least 1 die for defense
+      const newDefenseDice = Math.max(1, Math.min(defenseDice, totalDice - 1));
+
+      $(this).val(newDefenseDice);
+      $('input[name="pasAttackDice"]').val(totalDice - newDefenseDice);
+    });
+
+    function updateTotalDice() {
+      const bonusDice = parseInt($('input[name="pasBonusDice"]').val()) || 0;
+      const totalDice = profileValue + bonusDice;
+      $('#totalDiceCount').text(totalDice);
+
+      // Default distribution: maximum for attack, minimum for defense
+      $('input[name="pasAttackDice"]').val(totalDice - 1);
+      $('input[name="pasDefenseDice"]').val(1);
+
+      // Update max values
+      $('input[name="pasAttackDice"]').attr('max', totalDice - 1);
+      $('input[name="pasDefenseDice"]').attr('max', totalDice - 1);
+    }
+  });
+</script>

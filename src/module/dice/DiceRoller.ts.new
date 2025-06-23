@@ -82,9 +82,10 @@ export class DiceRoller {
         tabs.bind(html[0]);
       }
     }, {
-      width: 800,
-      height: 600,
-      classes: ["fvtt-mds", "dialog"]
+      // Make the dialog larger
+      width: 500,
+      height: "auto",
+      classes: ["dice-roll-dialog"]
     }).render(true);
   }
 
