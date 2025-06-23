@@ -10,4 +10,10 @@ Hooks.once("init", async () => {
     types: ["playerCharacter"],
     makeDefault: true
   });
+
+  // Register Handlebars partials
+  loadTemplates([
+    "systems/fvtt-mds/templates/dice/dice-roll-dialog.hbs",
+    "systems/fvtt-mds/templates/dice/dice-roll-result.hbs",
+  ]);
 });

@@ -1,0 +1,23 @@
+<div class="dice-roll">
+  <h3>{{profileLabel}} ({{profileValue}})</h3>
+  <div class="dice-result">
+    <div class="dice-formula">Highest of {{totalDice}}d10 + {{staticBonus}}</div>
+    <div class="dice-tooltip">
+      <div class="dice">
+        {{#each diceResults}}
+          <span class="die d10 {{#if this.isComplication}}complication-die{{/if}} {{#if this.isAels}}aels-die{{/if}} {{#if this.isAdvantage}}advantage-die{{/if}} {{#if this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
+        {{/each}}
+      </div>
+    </div>
+    <h4 class="dice-total">{{total}}</h4>
+    {{#if aelsBonus}}
+      <div class="aels-bonus">Bonus Aels: +{{aelsBonus}}</div>
+    {{/if}}
+    {{#if hasComplication}}
+      <div class="complication">Complication!</div>
+    {{/if}}
+    {{#if hasAdvantage}}
+      <div class="advantage">Avantage!</div>
+    {{/if}}
+  </div>
+</div>
