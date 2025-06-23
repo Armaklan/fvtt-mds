@@ -1,30 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160"/>
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-      <div class="resources">
-        <div class="fatigue-resource">
-          <label>Fatigue</label>
-          <div class="fatigue-values">
-            <a class="resource-control decrease-fatigue"><i class="fas fa-minus"></i></a>
-            <input type="number" name="system.fatigue.value" value="{{actor.system.fatigue.value}}" data-dtype="Number"/>
-            <span class="fatigue-separator">/</span>
-            <span class="fatigue-max">{{actor.system.fatigue.max}}</span>
-            <a class="resource-control increase-fatigue"><i class="fas fa-plus"></i></a>
-          </div>
-        </div>
-        <div class="panache-resource">
-          <label>Panache</label>
-          <div class="panache-values">
-            <a class="resource-control decrease-panache"><i class="fas fa-minus"></i></a>
-            <input type="number" name="system.panache.value" value="{{actor.system.panache.value}}" data-dtype="Number"/>
-            <a class="resource-control increase-panache"><i class="fas fa-plus"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  {{> "systems/fvtt-mds/templates/sheets/partials/header.hbs"}}
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
@@ -35,131 +10,29 @@
   <section class="sheet-body">
     {{!-- Profiles Tab --}}
     <div class="tab" data-group="primary" data-tab="profiles">
-      <div class="profiles-grid">
-        <div class="profile-item">
-          <label>Bretteur</label>
-          <input type="number" name="system.profiles.swordsman.value" value="{{actor.system.profiles.swordsman.value}}" min="1" max="3" data-dtype="Number"/>
-        </div>
-        <div class="profile-item">
-          <label>Courtisan</label>
-          <input type="number" name="system.profiles.courtier.value" value="{{actor.system.profiles.courtier.value}}" min="1" max="3" data-dtype="Number"/>
-        </div>
-        <div class="profile-item">
-          <label>Lettrés</label>
-          <input type="number" name="system.profiles.scholar.value" value="{{actor.system.profiles.scholar.value}}" min="1" max="3" data-dtype="Number"/>
-        </div>
-        <div class="profile-item">
-          <label>Forban</label>
-          <input type="number" name="system.profiles.rogue.value" value="{{actor.system.profiles.rogue.value}}" min="1" max="3" data-dtype="Number"/>
-        </div>
-        <div class="profile-item">
-          <label>Aventurier</label>
-          <input type="number" name="system.profiles.adventurer.value" value="{{actor.system.profiles.adventurer.value}}" min="1" max="3" data-dtype="Number"/>
-        </div>
-      </div>
+      {{> "systems/fvtt-mds/templates/sheets/partials/profile.hbs"}}
 
       <div class="content-row">
         <div class="content-column col-double">
           {{!-- Techniques Section --}}
-          <header class="techniques-header">
-            <h3 class="techniques-title">Techniques</h3>
-            <div class="item-controls">
-              <a class="item-control item-create" title="Create Technique" data-type="technique"><i class="fas fa-plus"></i> Add Technique</a>
-            </div>
-          </header>
-          <ol class="techniques-list">
-            {{#each actor.items as |item|}}
-                {{#if (eq item.type "technique")}}
-                    <li class="technique-item" data-item-id="{{item._id}}">
-                      <div class="technique-name">
-                        <input type="text" name="technique-name" value="{{item.name}}"/>
-                      </div>
-                      <div class="technique-value">
-                        <input type="number" name="technique-value" value="{{item.system.value}}" data-dtype="Number"/>
-                      </div>
-                      <div class="item-controls">
-                        <a class="item-control item-delete" title="Delete Technique"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </li>
-                {{/if}}
-            {{/each}}
-          </ol>
+          {{> "systems/fvtt-mds/templates/sheets/partials/technique.hbs"}}
         </div>
 
         <div class="content-column col-flex">
           {{!-- Aels Section --}}
-          <header class="aels-header">
-            <h3 class="aels-title">Aels</h3>
-            {{#unless hasAels}}
-            <div class="item-controls">
-              <a class="item-control item-create" title="Create Aels" data-type="aels"><i class="fas fa-plus"></i> Add Aels</a>
-            </div>
-            {{/unless}}
-          </header>
-          <div class="aels-container">
-            {{#each actor.items as |item|}}
-                {{#if (eq item.type "aels")}}
-                    <div class="aels-item profile-like" data-item-id="{{item._id}}">
-                      <div class="aels-type">
-                        <input type="text" name="aels-type" value="{{item.name}}" placeholder="Type de créature"/>
-                      </div>
-                      <div class="aels-value profile-like-value">
-                        <input type="number" name="aels-value" value="{{item.system.value}}" data-dtype="Number" placeholder="Puissance"/>
-                      </div>
-                    </div>
-                {{/if}}
-            {{/each}}
-          </div>
+          {{> "systems/fvtt-mds/templates/sheets/partials/aels.hbs"}}
         </div>
       </div>
 
       <div class="content-row">
         <div class="content-column col-flex">
           {{!-- Blessures Section --}}
-          <header class="blessures-header">
-            <h3 class="blessures-title">Blessures</h3>
-            <div class="item-controls">
-              <a class="item-control item-create" title="Create Blessure" data-type="blessure"><i class="fas fa-plus"></i> Add Blessure</a>
-            </div>
-          </header>
-          <ol class="blessures-list">
-            {{#each actor.items as |item|}}
-                {{#if (eq item.type "blessure")}}
-                    <li class="blessure-item" data-item-id="{{item._id}}">
-                      <div class="blessure-name">
-                        <input type="text" name="blessure-name" value="{{item.name}}"/>
-                      </div>
-                      <div class="item-controls">
-                        <a class="item-control item-delete" title="Delete Blessure"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </li>
-                {{/if}}
-            {{/each}}
-          </ol>
+          {{> "systems/fvtt-mds/templates/sheets/partials/blessure.hbs"}}
         </div>
 
         <div class="content-column col-flex">
           {{!-- Equipements Section --}}
-          <header class="equipements-header">
-            <h3 class="equipements-title">Equipements</h3>
-            <div class="item-controls">
-              <a class="item-control item-create" title="Create Equipement" data-type="equipements"><i class="fas fa-plus"></i> Add Equipement</a>
-            </div>
-          </header>
-          <ol class="equipements-list">
-            {{#each actor.items as |item|}}
-                {{#if (eq item.type "equipements")}}
-                    <li class="equipement-item" data-item-id="{{item._id}}">
-                      <div class="equipement-name">
-                        <input type="text" name="equipement-name" value="{{item.name}}"/>
-                      </div>
-                      <div class="item-controls">
-                        <a class="item-control item-delete" title="Delete Equipement"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </li>
-                {{/if}}
-            {{/each}}
-          </ol>
+          {{> "systems/fvtt-mds/templates/sheets/partials/equipement.hbs"}}
         </div>
       </div>
     </div>

@@ -1,0 +1,20 @@
+<header class="blessures-header">
+  <h3 class="blessures-title">Blessures</h3>
+  <div class="item-controls">
+    <a class="item-control item-create" title="Create Blessure" data-type="blessure"><i class="fas fa-plus"></i> Add Blessure</a>
+  </div>
+</header>
+<ol class="blessures-list">
+  {{#each actor.items as |item|}}
+      {{#if (eq item.type "blessure")}}
+          <li class="blessure-item" data-item-id="{{item._id}}">
+            <div class="blessure-name">
+              <input type="text" name="blessure-name" value="{{item.name}}"/>
+            </div>
+            <div class="item-controls">
+              <a class="item-control item-delete" title="Delete Blessure"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+      {{/if}}
+  {{/each}}
+</ol>

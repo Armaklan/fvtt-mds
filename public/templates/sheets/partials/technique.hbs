@@ -1,0 +1,23 @@
+<header class="techniques-header">
+  <h3 class="techniques-title">Techniques</h3>
+  <div class="item-controls">
+    <a class="item-control item-create" title="Create Technique" data-type="technique"><i class="fas fa-plus"></i> Add Technique</a>
+  </div>
+</header>
+<ol class="techniques-list">
+  {{#each actor.items as |item|}}
+      {{#if (eq item.type "technique")}}
+          <li class="technique-item" data-item-id="{{item._id}}">
+            <div class="technique-name">
+              <input type="text" name="technique-name" value="{{item.name}}"/>
+            </div>
+            <div class="technique-value">
+              <input type="number" name="technique-value" value="{{item.system.value}}" data-dtype="Number"/>
+            </div>
+            <div class="item-controls">
+              <a class="item-control item-delete" title="Delete Technique"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+      {{/if}}
+  {{/each}}
+</ol>

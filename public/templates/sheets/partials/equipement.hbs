@@ -1,0 +1,20 @@
+<header class="equipements-header">
+  <h3 class="equipements-title">Equipements</h3>
+  <div class="item-controls">
+    <a class="item-control item-create" title="Create Equipement" data-type="equipements"><i class="fas fa-plus"></i> Add Equipement</a>
+  </div>
+</header>
+<ol class="equipements-list">
+  {{#each actor.items as |item|}}
+      {{#if (eq item.type "equipements")}}
+          <li class="equipement-item" data-item-id="{{item._id}}">
+            <div class="equipement-name">
+              <input type="text" name="equipement-name" value="{{item.name}}"/>
+            </div>
+            <div class="item-controls">
+              <a class="item-control item-delete" title="Delete Equipement"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+      {{/if}}
+  {{/each}}
+</ol>
