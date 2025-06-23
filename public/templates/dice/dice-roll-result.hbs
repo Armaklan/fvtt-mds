@@ -1,29 +1,44 @@
-<div class="dice-roll">
-  {{#if actorName}}
-  <div class="dice-roll-character">
-    {{#if actorImg}}<img src="{{actorImg}}" alt="{{actorName}}" class="dice-roll-avatar" />{{/if}}
-    <span class="dice-roll-character-name">{{actorName}}</span>
-  </div>
-  {{/if}}
-  <h3>{{profileLabel}} ({{profileValue}})</h3>
-  <div class="dice-result">
-    <div class="dice-formula">Highest of {{totalDice}}d10 + {{staticBonus}}</div>
-    <div class="dice-tooltip">
-      <div class="dice">
-        {{#each diceResults}}
-          <span class="die d10 {{#if this.isComplication}}complication-die{{/if}} {{#if this.isAels}}aels-die{{/if}} {{#if this.isAdvantage}}advantage-die{{/if}} {{#if this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
-        {{/each}}
-      </div>
+    <div class="dice-roll">
+        {{#if actorName}}
+            <div class="dice-roll-character">
+                {{#if actorImg}}<img src="{{actorImg}}" alt="{{actorName}}" class="dice-roll-avatar"/>{{/if}}
+                <span class="dice-roll-character-name">{{actorName}}</span>
+            </div>
+        {{/if}}
+        <h3>{{profileLabel}} ({{profileValue}})</h3>
+        <div class="dice-result">
+            <h3>Jets de Profil</h3>
+            <div class="dice-tooltip expanded">
+                <div class="dice">
+                    {{#each diceResults}}
+                        <span class="die d10 {{#if this.isComplication}}complication-die{{/if}} {{#if
+                                this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
+                    {{/each}}
+                </div>
+            </div>
+            {{#if aelsBonus}}
+                <h3>Aels</h3>
+                <div class="dice-tooltip expanded">
+                    <div class="dice">
+                        {{#each aelsDiceResults}}
+                            <span class="die d6 {{#if this.isComplication}}complication-die{{/if}} {{#if
+                                    this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/if}}
+            <h4 class="dice-total">{{total}}</h4>
+            {{#if aelsBonus}}
+                <div class="aels-bonus">Bonus Aels: +{{aelsBonus}}</div>
+            {{/if}}
+            {{#if aelsFatigue}}
+                <div class="aels-bonus">Fatigue magique: {{aelsFatigue}}</div>
+            {{/if}}
+            {{#if hasComplication}}
+                <div class="complication">Complication!</div>
+            {{/if}}
+            {{#if hasAdvantage}}
+                <div class="advantage">Avantage!</div>
+            {{/if}}
+        </div>
     </div>
-    <h4 class="dice-total">{{total}}</h4>
-    {{#if aelsBonus}}
-      <div class="aels-bonus">Bonus Aels: +{{aelsBonus}}</div>
-    {{/if}}
-    {{#if hasComplication}}
-      <div class="complication">Complication!</div>
-    {{/if}}
-    {{#if hasAdvantage}}
-      <div class="advantage">Avantage!</div>
-    {{/if}}
-  </div>
-</div>

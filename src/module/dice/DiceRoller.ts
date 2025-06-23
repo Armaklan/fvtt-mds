@@ -125,40 +125,32 @@ export class DiceRoller {
 
     // Check for Aels bonus
     let aelsBonus = 0;
+    let aelsFatigue = 0;
+    let aelsFormattedResults = [];
     if (useAels && aelsValue > 1) {
-      diceResults.forEach(result => {
-        if (result === aelsValue) {
-          aelsBonus += 2;
-        }
-      });
+      const aelRols = await new Roll(`${aelsValue}d6`).evaluate({async: true});
+      const aelDiceResults = aelRols.dice[0].results.map(d => d.result);
+      aelsBonus = aelDiceResults.filter(r => r >= 4).length * 2;
+      aelsFatigue = aelDiceResults.filter(r => r === 1).length;
       total += aelsBonus;
+
+      aelsFormattedResults = aelDiceResults.map(r => ({
+        value: r,
+        isComplication: r === 1,
+        isHighest: r >= 4
+      }));
     }
 
     // Check for complications (half or more dice showing "1")
-    const onesCount = diceResults.filter(r => r === 1).length;
-    const hasComplication = onesCount >= Math.ceil(totalDice / 2);
+    const hasComplication = diceResults.every(r => r === 1);
 
-    // Check for advantages (multiple dice showing the same value, except 1)
-    const valueCounts = {};
-    diceResults.forEach(result => {
-      if (result !== 1) {
-        valueCounts[result] = (valueCounts[result] || 0) + 1;
-      }
-    });
-
-    // Find values that appear multiple times (for advantage highlighting)
-    const advantageValues = Object.entries(valueCounts)
-      .filter(([_, count]) => (count as number) > 1)
-      .map(([value, _]) => parseInt(value));
-
-    const hasAdvantage = advantageValues.length > 0;
+    // Check for advantages (multiple dice showing the highest value)
+    const hasAdvantage = diceResults.filter(r => r === highestDieValue).length > 1;
 
     // Prepare the dice results for the template
     const formattedDiceResults = diceResults.map(r => ({
       value: r,
       isComplication: r === 1,
-      isAels: useAels && r === aelsValue,
-      isAdvantage: advantageValues.includes(r),
       isHighest: r === highestDieValue
     }));
 
@@ -169,8 +161,10 @@ export class DiceRoller {
       totalDice,
       staticBonus,
       diceResults: formattedDiceResults,
+      aelsDiceResults: aelsFormattedResults,
       total,
       aelsBonus: aelsBonus > 0 ? aelsBonus : null,
+      aelsFatigue: aelsFatigue > 0 ? aelsFatigue : null,
       hasComplication,
       hasAdvantage,
       actorName: actor.name,
