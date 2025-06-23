@@ -16,10 +16,9 @@
             </div>
             {{#if hasAels}}
                 <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="useAels">
-                        Utilisation de l'Aels (Puissance: {{aelsValue}})
-                    </label>
+                    <label>Puissance de l'Aels:</label>
+                    <input type="range" name="useAelsValue" min="0" max="{{aelsValue}}" value="0" class="aels-range">
+                    <span class="aels-value-display">0</span>
                 </div>
             {{/if}}
         </div>
@@ -37,10 +36,9 @@
 
             {{#if hasAels}}
                 <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="pasUseAels">
-                        Utilisation de l'Aels (Puissance: {{aelsValue}})
-                    </label>
+                    <label>Puissance de l'Aels:</label>
+                    <input type="range" name="pasUseAelsValue" min="0" max="{{aelsValue}}" value="0" class="aels-range">
+                    <span class="aels-value-display">0</span>
                 </div>
             {{/if}}
 
@@ -76,6 +74,11 @@
     // Update total dice count and enforce distribution constraints
     $(document).ready(function () {
         const profileValue = {{profileValue}};
+
+        // Update Aels range display values
+        $('.aels-range').on('input', function() {
+            $(this).next('.aels-value-display').text($(this).val());
+        });
 
         // Update when bonus dice change
         $('input[name="pasBonusDice"]').change(function () {

@@ -39,9 +39,9 @@ export class DiceRoller {
               // Standard mode
               const bonusDice = parseInt(form.bonusDice.value) || 0;
               const staticBonus = parseInt(form.staticBonus.value) || 0;
-              const useAels = hasAels && form.useAels?.checked;
+              const selectedAelsValue = hasAels ? parseInt(form.useAelsValue.value) || 0 : 0;
 
-              await this.performDiceRoll(profileLabel, profileValue, bonusDice, staticBonus, useAels, aelsValue, actor);
+              await this.performDiceRoll(profileLabel, profileValue, bonusDice, staticBonus, selectedAelsValue > 0, selectedAelsValue, actor);
             } else if (activeTab === 'passe-arme') {
               // Passe d'arme mode
               const bonusDice = parseInt(form.pasBonusDice.value) || 0;
@@ -49,7 +49,7 @@ export class DiceRoller {
               const defenseDice = parseInt(form.pasDefenseDice.value) || 0;
               const attackBonus = parseInt(form.pasAttackBonus.value) || 0;
               const defenseBonus = parseInt(form.pasDefenseBonus.value) || 0;
-              const useAels = hasAels && form.pasUseAels?.checked;
+              const selectedAelsValue = hasAels ? parseInt(form.pasUseAelsValue.value) || 0 : 0;
 
               await this.performPasseArmeDiceRoll(
                 profileLabel, 
@@ -57,8 +57,8 @@ export class DiceRoller {
                 defenseDice, 
                 attackBonus, 
                 defenseBonus, 
-                useAels, 
-                aelsValue, 
+                selectedAelsValue > 0, 
+                selectedAelsValue, 
                 actor
               );
             }
@@ -127,7 +127,7 @@ export class DiceRoller {
     let aelsBonus = 0;
     let aelsFatigue = 0;
     let aelsFormattedResults = [];
-    if (useAels && aelsValue > 1) {
+    if (useAels && aelsValue > 0) {
       const aelRols = await new Roll(`${aelsValue}d6`).evaluate({async: true});
       const aelDiceResults = aelRols.dice[0].results.map(d => d.result);
       aelsBonus = aelDiceResults.filter(r => r >= 4).length * 2;
@@ -255,7 +255,7 @@ export class DiceRoller {
 
     // Check for Aels bonus
     let aelsBonus = 0;
-    if (useAels && aelsValue > 1) {
+    if (useAels && aelsValue > 0) {
       diceResults.forEach(result => {
         if (result === aelsValue) {
           aelsBonus += 2;
