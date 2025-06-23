@@ -24,35 +24,39 @@
         </div>
 
         <div class="tab" data-tab="passe-arme" data-group="primary-tabs">
-            <div class="form-group">
-                <label>Dé bonus:</label>
-                <input type="number" name="pasBonusDice" value="0" min="0">
-            </div>
 
-            <div class="form-group">
-                <label>Dés totaux: <span id="totalDiceCount">{{combatValue}}</span></label>
-            </div>
-
-
-            {{#if hasAels}}
-                <div class="form-group">
-                    <label>Puissance de l'Aels:</label>
-                    <input type="range" name="pasUseAelsValue" min="0" max="{{aelsValue}}" value="0" class="aels-range">
-                    <span class="aels-value-display">0</span>
+            <div class="content-row">
+                <div class="content-column col-flex">
+                    <div class="form-group bonus-dice-container">
+                        <label>Dé bonus:</label>
+                        <input type="number" name="pasBonusDice" value="0" min="0">
+                        <label>Total: <span id="totalDiceCount">{{combatValue}}</span></label>
+                    </div>
                 </div>
-            {{/if}}
+            </div>
+
 
             <div class="content-row">
                 <div class="content-column col-flex">
                     <div class="form-group">
                         <label>Dés d'attaque:</label>
-                        <input type="number" name="pasAttackDice" value="{{profileValue}}" min="0" max="{{profileValue}}">
+                        <input type="number" name="pasAttackDice" value="{{profileValue}}" min="0"
+                               max="{{profileValue}}">
                     </div>
 
                     <div class="form-group">
                         <label>Bonus statique :</label>
                         <input type="number" name="pasAttackBonus" value="0" min="0">
                     </div>
+
+                    {{#if hasAels}}
+                        <div class="form-group">
+                            <label>Aels :</label>
+                            <input type="range" name="pasAttackAelsValue" min="0" max="{{aelsValue}}" value="0"
+                                   class="aels-range">
+                            <span class="aels-value-display">0</span>
+                        </div>
+                    {{/if}}
                 </div>
                 <div class="content-column col-flex">
                     <div class="form-group">
@@ -64,6 +68,15 @@
                         <label>Bonus statique :</label>
                         <input type="number" name="pasDefenseBonus" value="0" min="0">
                     </div>
+
+                    {{#if hasAels}}
+                        <div class="form-group">
+                            <label>Aels :</label>
+                            <input type="range" name="pasDefenseAelsValue" min="0" max="{{aelsValue}}" value="0"
+                                   class="aels-range">
+                            <span class="aels-value-display">0</span>
+                        </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -74,9 +87,10 @@
     // Update total dice count and enforce distribution constraints
     $(document).ready(function () {
         const profileValue = {{profileValue}};
+        const combatValue = {{combatValue}};
 
         // Update Aels range display values
-        $('.aels-range').on('input', function() {
+        $('.aels-range').on('input', function () {
             $(this).next('.aels-value-display').text($(this).val());
         });
 
@@ -111,6 +125,7 @@
         });
 
         function updateTotalDice() {
+            console.log('updateTotalDice');
             const bonusDice = parseInt($('input[name="pasBonusDice"]').val()) || 0;
             const totalDice = combatValue + bonusDice;
             $('#totalDiceCount').text(totalDice);
