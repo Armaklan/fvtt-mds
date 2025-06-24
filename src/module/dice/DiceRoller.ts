@@ -109,13 +109,25 @@ export class DiceRoller {
     staticBonus: number, 
     useAels: boolean, 
     aelsValue: number,
-    actor: any
+    actor: any,
+    color?: string
   ) {
+    console.debug("Dice role : ", {
+      profileLabel,
+        profileValue,
+        bonusDice,
+        staticBonus,
+        useAels,
+        aelsValue,
+        actor
+    });
     // Calculate total dice to roll
     const totalDice = profileValue + bonusDice;
 
     // Roll the dice
-    const roll = await new Roll(`${totalDice}d10`).evaluate({async: true});
+    const rollFormula = color ? `${totalDice}d10[${color}]` : `${totalDice}d10`;
+    console.log(rollFormula)
+    const roll = await new Roll(rollFormula).evaluate({async: true});
 
     // Get individual dice results
     const diceResults = roll.dice[0].results.map(d => d.result);
@@ -130,8 +142,10 @@ export class DiceRoller {
     let aelsBonus = 0;
     let aelsFatigue = 0;
     let aelsFormattedResults = [];
+    let aelRols;
     if (useAels && aelsValue > 0) {
-      const aelRols = await new Roll(`${aelsValue}d6`).evaluate({async: true});
+      const aelFormula = color ? `${aelsValue}d6[${color}]` : `${aelsValue}d6`;
+      aelRols = await new Roll(aelFormula).evaluate({async: true});
       const aelDiceResults = aelRols.dice[0].results.map(d => d.result);
       aelsBonus = aelDiceResults.filter(r => r >= 4).length * 2;
       aelsFatigue = aelDiceResults.filter(r => r === 1).length;
@@ -174,15 +188,18 @@ export class DiceRoller {
       actorImg: actor.img
     });
 
-    // Create the chat message
-    ChatMessage.create({
+    const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       content: messageContent,
       sound: CONFIG.sounds.dice,
-      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-      roll: roll
-    });
+      style: CONST.CHAT_MESSAGE_STYLES.ROLL,
+      rolls: [roll, aelRols].filter(r => !!r),
+    };
+
+    ChatMessage.applyRollMode(chatData, "roll");
+    // Create the chat message
+    ChatMessage.create(chatData);
   }
   /**
    * Perform the Passe d'Arme dice roll with the specified parameters
@@ -217,7 +234,8 @@ export class DiceRoller {
       attackBonus,
       useAttackAels,
       attackAelsValue,
-      actor
+      actor,
+      'red'
     );
 
     // Then perform defense roll
@@ -228,7 +246,8 @@ export class DiceRoller {
       defenseBonus,
       useDefenseAels,
       defenseAelsValue,
-      actor
+      actor,
+      'blue'
     );
   }
 
