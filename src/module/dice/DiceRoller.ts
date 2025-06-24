@@ -3,6 +3,50 @@
  */
 export class DiceRoller {
   /**
+   * Initialize the dice roller
+   */
+  static init() {
+    Hooks.on("renderChatMessage", (message, html, data) => {
+      html.find(".apply-fatigue").click(this._onApplyFatigue.bind(this));
+    });
+  }
+
+  /**
+   * Handle applying fatigue to an actor
+   * @param {Event} event - The click event
+   * @private
+   */
+  static async _onApplyFatigue(event) {
+    event.preventDefault();
+
+    const button = event.currentTarget;
+    const actorId = button.dataset.actorId;
+    const fatigueAmount = parseInt(button.dataset.fatigue);
+
+    // Get the actor
+    const actor = game.actors.get(actorId);
+    if (!actor) {
+      console.error("Actor not found:", actorId);
+      return;
+    }
+
+    // Get current fatigue
+    const currentFatigue = actor.system.fatigue.value;
+    const maxFatigue = actor.system.fatigue.max;
+
+    // Calculate new fatigue (don't exceed max)
+    const newFatigue = Math.min(currentFatigue - fatigueAmount, maxFatigue);
+    
+
+
+    // Update the actor
+    await actor.update({"system.fatigue.value": newFatigue});
+
+    // Disable the button to prevent multiple applications
+    button.disabled = true;
+    button.textContent = newFatigue >= 0 ? "Fatigue appliquée" : "Test d'encaissement nécessaire";
+  }
+  /**
    * Show a dialog for configuring a profile roll
    * @param {string} profileLabel - The label of the profile
    * @param {number} profileValue - The value of the profile
@@ -185,7 +229,8 @@ export class DiceRoller {
       hasComplication,
       hasAdvantage,
       actorName: actor.name,
-      actorImg: actor.img
+      actorImg: actor.img,
+      actorId: actor.id
     });
 
     const chatData = {

@@ -720,6 +720,40 @@
   margin-top: 8px;
   text-align: center;
   font-size: 1.1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.apply-fatigue {
+  background: linear-gradient(to bottom, var(--color-primary), rgba(139, 0, 0, 0.8));
+  color: var(--color-text-light);
+  border: 1px solid var(--color-accent);
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-weight: bold;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+}
+
+.apply-fatigue:hover {
+  background: var(--color-accent);
+  color: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.apply-fatigue:disabled {
+  background: #888;
+  color: #ddd;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border-color: #aaa;
 }
 
 /* Dialog Form Styling */

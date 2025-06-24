@@ -31,7 +31,12 @@
                 <div class="aels-bonus">Bonus Aels: +{{aelsBonus}}</div>
             {{/if}}
             {{#if aelsFatigue}}
-                <div class="aels-bonus">Fatigue magique: {{aelsFatigue}}</div>
+                <div class="aels-bonus">
+                    Fatigue magique: {{aelsFatigue}}
+                    <button class="apply-fatigue" data-actor-id="{{actorId}}" data-fatigue="{{aelsFatigue}}">
+                        Appliquer la fatigue
+                    </button>
+                </div>
             {{/if}}
             {{#if hasComplication}}
                 <div class="complication">Complication!</div>

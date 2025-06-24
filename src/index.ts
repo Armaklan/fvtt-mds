@@ -1,8 +1,12 @@
 import "./styles/main.scss";
 import {PlayerCharacterSheet} from "./module/sheets/PlayerCharacterSheet";
+import {DiceRoller} from "./module/dice/DiceRoller";
 
 Hooks.once("init", async () => {
     console.log("Custom System | Initialisation");
+
+    // Initialize the dice roller
+    DiceRoller.init();
 
     // Register custom sheets
     Actors.unregisterSheet("core", ActorSheet);
