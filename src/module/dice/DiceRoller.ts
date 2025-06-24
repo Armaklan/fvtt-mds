@@ -148,7 +148,7 @@ export class DiceRoller {
       aelRols = await new Roll(aelFormula).evaluate({async: true});
       const aelDiceResults = aelRols.dice[0].results.map(d => d.result);
       aelsBonus = aelDiceResults.filter(r => r >= 4).length * 2;
-      aelsFatigue = aelDiceResults.filter(r => r === 1).length;
+      aelsFatigue = aelDiceResults.filter(r => r === 1).length + 1;
       total += aelsBonus;
 
       aelsFormattedResults = aelDiceResults.map(r => ({
