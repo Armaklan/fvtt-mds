@@ -10,8 +10,7 @@
             <div class="dice-tooltip expanded">
                 <div class="dice">
                     {{#each diceResults}}
-                        <span class="die d10 {{#if this.isComplication}}complication-die{{/if}} {{#if
-                                this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
+                        <span class="die d10 {{#if this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
                     {{/each}}
                 </div>
             </div>
@@ -20,8 +19,7 @@
                 <div class="dice-tooltip expanded">
                     <div class="dice">
                         {{#each aelsDiceResults}}
-                            <span class="die d6 {{#if this.isComplication}}complication-die{{/if}} {{#if
-                                    this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
+                            <span class="die d6 {{#if this.isHighest}}highest-die{{/if}}">{{this.value}}</span>
                         {{/each}}
                     </div>
                 </div>
@@ -38,11 +36,8 @@
                     </button>
                 </div>
             {{/if}}
-            {{#if hasComplication}}
-                <div class="complication">Complication!</div>
-            {{/if}}
-            {{#if hasAdvantage}}
-                <div class="advantage">Avantage!</div>
+            {{#if hasAubaine}}
+                <div class="aubaine">Aubaine!</div>
             {{/if}}
         </div>
     </div>

@@ -191,27 +191,25 @@ export class DiceRoller {
       const aelFormula = color ? `${aelsValue}d6[${color}]` : `${aelsValue}d6`;
       aelRols = await new Roll(aelFormula).evaluate({async: true});
       const aelDiceResults = aelRols.dice[0].results.map(d => d.result);
-      aelsBonus = aelDiceResults.filter(r => r >= 4).length * 2;
+      aelsBonus = aelDiceResults.filter(r => r % 2 === 0).length * 2;
       aelsFatigue = aelDiceResults.filter(r => r === 1).length + 1;
       total += aelsBonus;
 
       aelsFormattedResults = aelDiceResults.map(r => ({
         value: r,
-        isComplication: r === 1,
-        isHighest: r >= 4
+        isHighest: r % 2 === 0
       }));
     }
 
-    // Check for complications (half or more dice showing "1")
-    const hasComplication = diceResults.every(r => r === 1);
-
-    // Check for advantages (multiple dice showing the highest value)
-    const hasAdvantage = diceResults.filter(r => r === highestDieValue).length > 1;
+    // Check for Aubaine: any non-kept die (all dice except one highest) is even
+    const remainingDice = [...diceResults];
+    const idx = remainingDice.indexOf(highestDieValue);
+    if (idx !== -1) remainingDice.splice(idx, 1);
+    const hasAubaine = remainingDice.some(r => r % 2 === 0);
 
     // Prepare the dice results for the template
     const formattedDiceResults = diceResults.map(r => ({
       value: r,
-      isComplication: r === 1,
       isHighest: r === highestDieValue
     }));
 
@@ -226,8 +224,7 @@ export class DiceRoller {
       total,
       aelsBonus: aelsBonus > 0 ? aelsBonus : null,
       aelsFatigue: aelsFatigue > 0 ? aelsFatigue : null,
-      hasComplication,
-      hasAdvantage,
+      hasAubaine,
       actorName: actor.name,
       actorImg: actor.img,
       actorId: actor.id
