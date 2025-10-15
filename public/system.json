@@ -2,7 +2,7 @@
   "id": "fvtt-mds",
   "name": "fvtt-mds",
   "title": "Mousquetaire de Sang",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "authors": [
     {
       "name": "ZUBER Lionel",
@@ -18,5 +18,5 @@
   "languages": [],
   "packs": [],
   "manifest": "https://raw.githubusercontent.com/Armaklan/fvtt-mds/main/public/system.json",
-  "download": "https://github.com/Armaklan/fvtt-mds/releases/download/0.0.9/fvtt-mds.zip"
+  "download": "https://github.com/Armaklan/fvtt-mds/releases/download/0.0.10/fvtt-mds.zip"
 }
